@@ -65,6 +65,7 @@ int main(int argc,char **argv) {
 	for (int i=2;i<argc;i++) {
 		if (!strcmp(argv[i],"-b")) {
 			tpng.convert_binary = 1;
+			continue;
 		}
 		if (!strncmp(argv[i],"-w",2)) {
 			argv[i] += 2;
@@ -73,6 +74,7 @@ int main(int argc,char **argv) {
 				tpng_error("Trailing characters");
 				return -1;
 			}
+			continue;
 		}
 		if (!strncmp(argv[i],"-t",2)) {
 			argv[i] += 2;
@@ -81,6 +83,7 @@ int main(int argc,char **argv) {
 				tpng_error("Trailing characters");
 				return -1;
 			}
+			continue;
 		}
 		if (!strncmp(argv[i],"-ws",3)) {
 			argv[i] += 3;
@@ -89,6 +92,7 @@ int main(int argc,char **argv) {
 				tpng_error("Trailing characters");
 				return -1;
 			}
+			continue;
 		}
 		if (!strncmp(argv[i],"-hs",3)) {
 			argv[i] += 3;
@@ -97,6 +101,7 @@ int main(int argc,char **argv) {
 				tpng_error("Trailing characters");
 				return -1;
 			}
+			continue;
 		}
 		else {
 			tpng_error("Trailing characters");
@@ -404,7 +409,7 @@ int main(int argc,char **argv) {
 			fprintf(outfile_csv,"%d,",csv[i]);	
 		}
 	}
-	else {fputs((const char*)csv,outfile_csv);}
+	else {fwrite(csv,sizeof(int),width_intiles*height_intiles,outfile_csv);}
 	fclose(outfile_csv);
 
 	tpng_free(&tpng);
