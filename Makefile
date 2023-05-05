@@ -1,5 +1,6 @@
 
-all : targetcheck init $(TARGET)/bin/a.exe
+NAME = png-tileset.exe
+all : targetcheck init $(TARGET)/bin/$(NAME)
 
 
 clean : targetcheck
@@ -31,7 +32,7 @@ DEPS	= $(SRCS:src/%.c=$(TARGET)/dep/%.d)
 DFLAGS	= -MT $@ -MMD -MP -MF $(TARGET)/dep/$*.d
 
 
-$(TARGET)/bin/a.exe : $(OBJS) | $(TARGET)/bin
+$(TARGET)/bin/$(NAME) : $(OBJS) | $(TARGET)/bin
 	@echo "Linking ..."
 	gcc -o $@ $^ $(LFLAGS) 
 
